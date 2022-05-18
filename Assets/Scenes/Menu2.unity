@@ -2878,12 +2878,23 @@ MonoBehaviour:
       you are not close to them
   - version: 0.2.5
     releaseDate: 17th May 22
-    introductionText: After a long time, a new character has been released! Go check
-      it out
+    introductionText: 'After a long time, a new character has been released! Also,
+      a lot of balance changes, bug fixes and overall QoL.
+
+
+      Until steam release,
+      the only content update left is a new map one, other than that I will keep
+      working on QoL, improving the UI and maybe reworking the characters.
+
+
+      Try
+      it out!'
     bugFixes:
     - Fixed Lenny's weight
     - Daily rewards now work properly
     - Fixed visuals on tutorial to have shadows
+    - Fixed region dropdown showing Asia as selected, even if you didn't select it
+    - Fixed connection problems when switching regions
     additions:
     - AmugSUS joins the battle!
     - Added a bunch of people to the playtesting credits. If you played the game
@@ -2896,6 +2907,7 @@ MonoBehaviour:
     - Increased Driftking's cooldown 4>6 seconds
     - Decreased Sick Ranchez's passive duration 3>2.5
     - Decreased Thortilla's cooldown 15>14
+    - Reworked slightly holes 13 and 14 to make a bit less frustrating.
   morePatchesPrefab: {fileID: 6109943395106551130, guid: 1b7b0264d0356604f8dc194c752c2c9c, type: 3}
   versionSizes: 35
   titleSizes: 25
@@ -11226,6 +11238,7 @@ MonoBehaviour:
   fullscreen: {fileID: 773959155}
   quality: {fileID: 1253798575}
   resolution: {fileID: 1563952523}
+  regionDropdown: {fileID: 1459821229}
   volume: {fileID: 989801428}
   sfxVol: {fileID: 508811618}
   ambientVol: {fileID: 1801718259}

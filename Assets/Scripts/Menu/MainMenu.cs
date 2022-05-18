@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     [Header("UI Settings")]
     public Toggle fullscreen;
-    public Dropdown quality, resolution;
+    public Dropdown quality, resolution, regionDropdown;
     public Slider volume, sfxVol, ambientVol, musicVol;
 
     internal PlayerDetails playerInstance;
@@ -43,8 +43,14 @@ public class MainMenu : MonoBehaviourPunCallbacks
         else
             Destroy(this);
 
+        
+
         PhotonNetwork.AutomaticallySyncScene = true;
+
+        
         PhotonNetwork.ConnectUsingSettings();
+        
+
         statusMessage.text = "Connecting... ";
 
         PhotonNetwork.GameVersion = gameVersion;
@@ -237,6 +243,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
         statusMessage.text = "Connected succesfully to server";
         retryButton.SetActive(false);
 
+        SetRegionDropdown();
+
         if (PlayerPrefs.HasKey("nickname"))
         {
             playerName.text = PlayerPrefs.GetString("nickname");
@@ -265,7 +273,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         retryButton.SetActive(true);
         if (regionChanged)
         {
-            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.ConnectToRegion(PlayerPrefs.GetString("PreferredRegion"));
             regionChanged = false;
         }
            
@@ -530,28 +538,31 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void SwitchRegion(int value)
     {
+        string result = "";
         switch (value)
         {
             case 0:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "asia";
+                result = "asia";
                 break;
             case 1:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "au";
+                result = "au";
                 break;
             case 2:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
+                result = "eu";
                 break;
             case 3:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
+                result = "us";
                 break;
             case 4:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "sa";
+                result = "sa";
                 break;
             case 5:
-                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "ru";
+                result = "ru";
                 break;
 
         }
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = result;
+        PlayerPrefs.SetString("PreferredRegion", result);
         regionChanged = true;
         PhotonNetwork.Disconnect();
     }
@@ -620,6 +631,60 @@ public class MainMenu : MonoBehaviourPunCallbacks
         audioMixer.SetFloat("musicVol", Mathf.Log10(musicVol.value) * 20);
 
         volumesSet = true;
+    }
+    
+    private void SelectPreviousRegion()
+    {
+        var value = PlayerPrefs.GetString("PreferredRegion");
+        PhotonNetwork.ConnectToRegion(value);
+        /*switch (value)
+        {
+            case 0:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "asia";
+                break;
+            case 1:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "au";
+                break;
+            case 2:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
+                break;
+            case 3:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
+                break;
+            case 4:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "sa";
+                break;
+            case 5:
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "ru";
+                break;
+
+        }*/
+    }
+
+    private void SetRegionDropdown()
+    {
+        switch (PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion)
+        {
+            case "asia":
+                regionDropdown.value = 0;
+                break;
+            case "au":
+                regionDropdown.value = 1;
+                break;
+            case "eu":
+                regionDropdown.value = 2;
+                break;
+            case "us":
+                regionDropdown.value = 3;
+                break;
+            case "sa":
+                regionDropdown.value = 4;
+                break;
+            case "ru":
+                regionDropdown.value = 5;
+                break;
+
+        }
     }
 
     private IEnumerator UpdatePlayerCount()
