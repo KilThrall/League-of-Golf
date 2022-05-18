@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu2.unity
+    guid: 5c4dbaca1ebd5dd4086191b3376387f3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial2.unity
+    guid: 943bf53c37a683543acd707b2d273346
+  - enabled: 1
+    path: Assets/Scenes/TimberHearth.unity
+    guid: 4fe74a19c62866f4293bb7e11aad57ad
+  - enabled: 1
+    path: Assets/Scenes/UnfairFair.unity
+    guid: cdc14fdb37b2719469be88dbadb8d909
+  m_configObjects: {}
