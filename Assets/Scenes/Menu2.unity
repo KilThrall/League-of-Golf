@@ -2877,7 +2877,7 @@ MonoBehaviour:
     - SFX are now position based, meaning you won't hear someone else's skills if
       you are not close to them
   - version: 0.2.5
-    releaseDate: 17th May 22
+    releaseDate: 19th May 22
     introductionText: 'After a long time, a new character has been released! Also,
       a lot of balance changes, bug fixes and overall QoL.
 
@@ -2896,7 +2896,7 @@ MonoBehaviour:
     - Fixed region dropdown showing Asia as selected, even if you didn't select it
     - Fixed connection problems when switching regions
     additions:
-    - AmugSUS joins the battle!
+    - Amugus joins the battle!
     - Added a bunch of people to the playtesting credits. If you played the game
       send your feedback to add you (UI still in development)
     changes:
